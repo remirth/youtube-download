@@ -1,2 +1,2 @@
-export * from './download';
+export * from './downloadbutton';
 export * from './container';
