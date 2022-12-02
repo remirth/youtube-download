@@ -4,6 +4,7 @@ import NextNProgress from 'nextjs-progressbar';
 import Head from 'next/head';
 
 import '../styles/globals.css';
+import '@fontsource/jetbrains-mono';
 import {Container} from '../components';
 import {useState} from 'react';
 
