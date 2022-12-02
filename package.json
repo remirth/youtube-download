@@ -6,7 +6,7 @@
     "build": "next build",
     "dev": "next dev --port 4000",
     "prepare": "npm run lint",
-    "lint": "next lint --fix && prettier --write .",
+    "lint": "next lint --fix && prettier --write . --loglevel warn",
     "start": "next start"
   },
   "dependencies": {
