@@ -1,0 +1,34 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint", "jsdoc", "prettier"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jsdoc/recommended",
+    "prettier",
+    "google"
+  ],
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "require-jsdoc": 0,
+    "max-len": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "crlf"
+      }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": 1,
+    "linebreak-style": ["warn", "windows"],
+    "new-cap": "off",
+    "no-tabs": "off",
+    "valid-jsdoc": "off",
+    "jsdoc/no-undefined-types": "off",
+    "indent": ["off"],
+    "quote-props": ["off"]
+  }
+}
