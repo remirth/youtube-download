@@ -10,7 +10,6 @@ const videoConfig = {
   filter: 'videoonly',
   quality: 'highestvideo',
   Title: 'Video',
-// eslint-disable-next-line prettier/prettier
 } as const satisfies Config;
 
 const audioConfig = {
