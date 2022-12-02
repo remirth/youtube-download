@@ -12,17 +12,19 @@ export const DownloadButton = ({
   format,
   videoTitle,
 }: DownloadButtonProps): JSX.Element => {
-  const [fname, href] = useMemo(
-    () => [
-      `${videoTitle}${DownloadConfig[format]?.FileExtension}`,
-      `/${format}/${videoId}${DownloadConfig[format]?.FileExtension}`,
-    ],
-    [videoTitle, format, videoId]
-  );
+  const href = useMemo(() => {
+    const params = new URLSearchParams({
+      format,
+      videoTitle: encodeURI(videoTitle ?? 'Title'),
+    });
+    return `/api/${videoId}?${params}`;
+  }, [videoId, format, videoTitle]);
 
   return (
-    <a href={href} download={fname}>
-      <button className="btn-primary btn-wide btn">Download</button>
+    <a href={href}>
+      <button className="btn-primary btn-wide btn">
+        Download {DownloadConfig[format].Title}
+      </button>
     </a>
   );
 };

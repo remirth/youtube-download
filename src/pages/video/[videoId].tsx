@@ -1,10 +1,8 @@
-import {existsSync, readdirSync} from 'fs';
 import type {
   GetStaticPaths,
   GetStaticProps,
   InferGetStaticPropsType,
 } from 'next';
-import {join} from 'path';
 import ytdl from 'ytdl-core';
 import {DownloadPage} from '../../components/download';
 import type {DownloadConfig} from '../../constants';
@@ -28,7 +26,14 @@ export const getStaticProps: GetStaticProps<{
   format: keyof typeof DownloadConfig;
 }> = async (context) => {
   const videoId = context.params?.['videoId'] as string;
-
+  if (!ytdl.validateID(videoId)) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: true,
+      },
+    };
+  }
   const details = await ytdl
     .getInfo(videoId)
     .then(({videoDetails}) => videoDetails);
@@ -46,20 +51,8 @@ export const getStaticProps: GetStaticProps<{
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths: {params: {videoId: string}}[] = [];
-  const publicPath = join(process.cwd(), 'public', 'video');
-
-  if (existsSync(publicPath)) {
-    readdirSync(publicPath).forEach((file) => {
-      const [videoId] = file.split('.');
-      if (videoId) {
-        paths.push({params: {videoId}});
-      }
-    });
-  }
-
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   };
 };
