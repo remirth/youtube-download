@@ -1,6 +1,8 @@
+import ffmpeg from 'fluent-ffmpeg';
 import type {NextApiRequest, NextApiResponse} from 'next';
 import ytdl from 'ytdl-core';
 import {DownloadConfig} from '../../constants';
+import ffmpegPath from 'ffmpeg-static';
 
 export const handler = (
   {method, query}: NextApiRequest,
@@ -28,10 +30,14 @@ export const handler = (
 
   res.setHeader(
     'Content-Disposition',
-    `attachment; filename="${videoTitle ?? id}${FileExtension}"`
+    `attachment; filename="${videoTitle ?? id}.${FileExtension}"`
   );
 
-  ytdl(id, {...config}).pipe(res);
+  ffmpeg.setFfmpegPath(ffmpegPath as string);
+
+  ffmpeg(ytdl(id, {...config}))
+    .format(FileExtension)
+    .pipe(res);
 };
 
 export default handler;

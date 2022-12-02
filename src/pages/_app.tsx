@@ -14,15 +14,15 @@ const MyApp: AppType = ({Component, pageProps}) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Head>
-        <title>Youtube Download</title>
+        <title>Youtube MP3 Download</title>
         <meta
           name="description"
-          content="Use this page to download Youtube videos locally"
+          content="Use this page to download the audio from a Youtube video."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <NextNProgress />
+      <NextNProgress color="#F28C18" />
 
       <Container>
         <Component {...pageProps} />

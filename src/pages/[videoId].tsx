@@ -4,8 +4,8 @@ import type {
   InferGetStaticPropsType,
 } from 'next';
 import ytdl from 'ytdl-core';
-import {DownloadPage} from '../../components/download';
-import type {DownloadConfig} from '../../constants';
+import {DownloadPage} from '../components/download';
+import type {DownloadConfig} from '../constants';
 
 const Page = (Props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (

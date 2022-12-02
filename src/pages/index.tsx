@@ -1,35 +1,26 @@
 import {useRouter} from 'next/router';
 import type {FormEvent} from 'react';
 import {useCallback} from 'react';
-import {FormatSelections} from '../constants';
 
 const Page = () => {
   const onSubmit = useSubmit();
   return (
     <>
       <div className="grid auto-cols-auto place-items-center p-4">
-        <h1 className="text-center text-2xl font-bold">Youtube Download</h1>
+        <h1 className="text-center text-2xl font-bold">Youtube MP3 Download</h1>
         <label className="pb-4 text-center">
-          Submit the URL of the video you wish to download.
+          Submit the URL of the Youtube audio you wish to download.
         </label>
 
         <form
           className="grid w-full auto-cols-auto place-items-center"
           onSubmit={onSubmit}
         >
-          <select className="select-primary select w-1/2 bg-gray-300 text-base-100">
-            {FormatSelections.map((format, index) => (
-              <option key={index} value={format.value}>
-                {format.label}
-              </option>
-            ))}
-            ;
-          </select>
           <input
             className="input-primary input mt-4 w-5/6 border-none bg-gray-300 text-base-100 focus:border-primary"
             type="url"
             required
-            placeholder="https://www.youtube.com/watch?v=vSnCeJEka_s"
+            placeholder="https://www.youtube.com/watch?v=iA4LKxj81zc"
           />
           <button
             className="btn-primary btn-wide btn mt-4 text-lg"
@@ -48,8 +39,7 @@ const useSubmit = () => {
   return useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      const [selection, input] = event.currentTarget.elements as unknown as [
-        HTMLSelectElement,
+      const [input] = event.currentTarget.elements as unknown as [
         HTMLInputElement
       ];
       const url = input.value;
@@ -71,7 +61,7 @@ const useSubmit = () => {
         return;
       }
 
-      push(`/${selection.value}/${videoId}`);
+      push(`/${videoId}`);
     },
     [push]
   );

@@ -1,19 +1,19 @@
 export type Config = {
-  FileExtension: '.mp3' | '.mp4';
-  filter: 'audioonly' | 'videoonly';
+  FileExtension: 'mp3' | 'mp4';
+  filter: 'audioonly' | undefined;
   quality: 'highestaudio' | 'highestvideo';
   Title: 'Audio' | 'Video';
 };
 
 const videoConfig = {
-  FileExtension: '.mp4',
-  filter: 'videoonly',
+  FileExtension: 'mp4',
+  filter: undefined,
   quality: 'highestvideo',
   Title: 'Video',
 } as const satisfies Config;
 
 const audioConfig = {
-  FileExtension: '.mp3',
+  FileExtension: 'mp3',
   filter: 'audioonly',
   quality: 'highestaudio',
   Title: 'Audio',

@@ -1,7 +1,7 @@
 import type {InferGetStaticPropsType} from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import type {getStaticProps} from '../pages/audio/[videoId]';
+import type {getStaticProps} from '../pages/[videoId]';
 import {DownloadButton} from '.';
 import {useCallback} from 'react';
 
@@ -21,7 +21,7 @@ export const DownloadPage = ({
           <h1 className="text-center text-2xl font-bold">
             {truncate(videoTitle ?? 'Title', 45)}
           </h1>
-          <div className="mt-4 grid grid-cols-2">
+          <div className="h-94 mt-4 grid grid-cols-2 border-primary">
             <Link href={videoURL ?? '/'}>
               <Image
                 priority
@@ -33,7 +33,7 @@ export const DownloadPage = ({
             </Link>
             <div>{truncate(videoDescription ?? 'Description', 70)}</div>
           </div>
-          <div className="mt-2 grid grid-cols-1 pb-4">
+          <div className="mt-4 grid grid-cols-1 pb-4">
             <DownloadButton {...{videoId, videoTitle, format}} />
           </div>
           <Link href={'/'}>
