@@ -1,4 +1,4 @@
-import {readdirSync} from 'fs';
+import {existsSync, readdirSync} from 'fs';
 import type {
   GetStaticPaths,
   GetStaticProps,
@@ -48,12 +48,14 @@ export const getStaticProps: GetStaticProps<{
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths: {params: {videoId: string}}[] = [];
   const publicPath = join(process.cwd(), 'public', 'audio');
-  readdirSync(publicPath).forEach((file) => {
-    const [videoId] = file.split('.');
-    if (videoId) {
-      paths.push({params: {videoId}});
-    }
-  });
+  if (existsSync(publicPath)) {
+    readdirSync(publicPath).forEach((file) => {
+      const [videoId] = file.split('.');
+      if (videoId) {
+        paths.push({params: {videoId}});
+      }
+    });
+  }
   return {
     paths: paths,
     fallback: true,
