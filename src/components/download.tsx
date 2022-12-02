@@ -1,6 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
 import {useMemo} from 'react';
-import {DownloadConfig} from '../../constants';
+import {DownloadConfig} from '../constants';
 
 export type DownloadButtonProps = {
   videoId: string | undefined;

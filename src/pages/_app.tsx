@@ -4,7 +4,7 @@ import NextNProgress from 'nextjs-progressbar';
 import Head from 'next/head';
 
 import '../styles/globals.css';
-import {Container} from './components/container';
+import {Container} from '../components';
 import {useState} from 'react';
 
 const MyApp: AppType = ({Component, pageProps}) => {

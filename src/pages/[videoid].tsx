@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {useCallback} from 'react';
 import ytdl from 'ytdl-core';
-import {DownloadButton} from './components/download';
+import {DownloadButton} from '../components';
 
 const Page = ({
   imageURL,
