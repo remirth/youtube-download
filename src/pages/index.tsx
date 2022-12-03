@@ -39,22 +39,12 @@ const useSubmit = () => {
   return useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      const [input] = event.currentTarget.elements as unknown as [
+      const [{value}] = event.currentTarget.elements as unknown as [
         HTMLInputElement
       ];
-      const url = input.value;
 
-      const urlObj = new URL(url);
-      let videoId = '';
-      if (urlObj.protocol !== 'https:') return;
-      if (urlObj.hostname.includes('youtube.com')) {
-        videoId = urlObj.searchParams.get('v') ?? '';
-      } else if (urlObj.hostname.includes('youtu.be')) {
-        videoId = urlObj.pathname.slice(1);
-      } else {
-        alert('URL is not a valid Youtube video!');
-        return;
-      }
+      const urlObj = new URL(value);
+      const videoId = urlObj.searchParams.get('v') || urlObj.pathname.slice(1);
 
       if (!videoId) {
         alert('URL is missing video ID!');

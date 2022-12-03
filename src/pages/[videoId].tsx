@@ -4,7 +4,7 @@ import type {
   InferGetStaticPropsType,
 } from 'next';
 import ytdl from 'ytdl-core';
-import {DownloadPage} from '../components/download';
+import {DownloadPage} from '../components/downloadpage/download';
 import type {DownloadConfig} from '../constants';
 
 const Page = (Props: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -54,6 +54,6 @@ export const getStaticProps: GetStaticProps<{
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: 'blocking',
+    fallback: true,
   };
 };

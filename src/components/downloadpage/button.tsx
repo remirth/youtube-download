@@ -1,5 +1,7 @@
+import {useRouter} from 'next/router';
 import {useMemo} from 'react';
-import {DownloadConfig} from '../constants';
+import Skeleton from 'react-loading-skeleton';
+import {DownloadConfig} from '../../constants';
 
 export type DownloadButtonProps = {
   videoId: string | undefined;
@@ -20,10 +22,19 @@ export const DownloadButton = ({
     return `/api/${videoId}?${params}`;
   }, [videoId, format, videoTitle]);
 
+  const {isFallback} = useRouter();
+  if (isFallback) {
+    return (
+      <div className="h-12 w-48 lg:w-64">
+        <Skeleton height="100%" />
+      </div>
+    );
+  }
+
   return (
-    <a href={href}>
-      <button className="btn-primary btn-wide btn">
-        Download {DownloadConfig[format].Title}
+    <a {...{href}}>
+      <button className="btn-primary btn w-48 lg:w-64">
+        Download {DownloadConfig[format]?.Title}
       </button>
     </a>
   );
