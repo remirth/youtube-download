@@ -3,6 +3,8 @@ import type {
   GetStaticProps,
   InferGetStaticPropsType,
 } from 'next';
+import {getPlaiceholder} from 'plaiceholder';
+import type {IGetPlaiceholderReturn} from 'plaiceholder/dist/plaiceholder';
 import ytdl from 'ytdl-core';
 import {DownloadPage} from '../components/downloadpage/download';
 import type {DownloadConfig} from '../constants';
@@ -22,7 +24,7 @@ export const getStaticProps: GetStaticProps<{
   videoDescription: string | undefined;
   videoTitle: string | undefined;
   videoURL: string | undefined;
-  imageURL: string | undefined;
+  imageProps: IGetPlaiceholderReturn | undefined;
   format: keyof typeof DownloadConfig;
 }> = async (context) => {
   const videoId = context.params?.['videoId'] as string;
@@ -39,14 +41,17 @@ export const getStaticProps: GetStaticProps<{
     .getInfo(videoId)
     .then(({videoDetails}) => videoDetails);
 
+  const imageURL = details.thumbnails[0]?.url ?? '/public/missing_logo.jpg';
+  const imageProps = await getPlaiceholder(imageURL);
+
   return {
     props: {
       videoId,
-      imageURL: details.thumbnails[0]?.url,
       videoDescription: details.description ?? '',
       videoURL: details.video_url,
       videoTitle: details.title,
       format: 'audio',
+      imageProps,
     },
   };
 };

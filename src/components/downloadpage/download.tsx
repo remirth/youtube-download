@@ -10,23 +10,21 @@ import {
 } from '..';
 
 export const DownloadPage = ({
-  imageURL,
   videoId,
   videoTitle,
   videoURL,
   videoDescription,
   format,
+  imageProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <div className="h-full w-full">
         <div className="grid auto-cols-auto place-items-center p-4">
           <DownloadTitle {...{videoTitle}} />
-          <div className="mt-4 grid max-h-[94px] grid-cols-2 gap-4 overflow-hidden border-primary">
-            <div className="place-self-end">
-              <DownloadImage
-                {...{videoURL, imageURL, height: 94, width: 168}}
-              />
+          <div className="mt-4 grid h-[94px] grid-cols-2 gap-4 overflow-hidden border-primary">
+            <div className="h-full w-full place-self-end">
+              <DownloadImage {...{videoURL, imageProps}} />
             </div>
             <DownloadDescription {...{videoDescription}} />
           </div>
