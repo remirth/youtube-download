@@ -24,8 +24,8 @@ export const Container = ({children}: {children: React.ReactNode}) => {
 
 const useTransition = (
   element: RefObject<HTMLElement>,
-  delay = 500,
-  steps = 50
+  delay = 10,
+  steps = 10
 ): void => {
   const delayPart = useMemo(() => delay / steps, [delay, steps]);
   const increment = useMemo(() => 100 / steps, [steps]);
