@@ -69,7 +69,9 @@ export const DownloadButton = ({
 
   return (
     <>
-      <label className="mx-auto text-sm">{progress}</label>
+      {rest.isLoading ? (
+        <label className="mx-auto text-sm">{progress}</label>
+      ) : null}
       <a href={blobURL} download={fileName}>
         <button className="btn-primary btn max-h-12 w-48 lg:w-64">
           <Loader ref={loadingElement} {...rest} {...{size}} />
