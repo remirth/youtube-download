@@ -21,6 +21,7 @@ type useDownloadResult = {
   isLoading: boolean;
   receivedLength: number;
   percentLoaded: string;
+  isFetching: boolean;
 };
 
 export const useDownload = ({
@@ -29,6 +30,7 @@ export const useDownload = ({
   downloadURL,
 }: useDownloadProps): useDownloadResult => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const [percentLoaded, setPercentLoaded] = useState('0%');
   const [receivedLength, setReceivedLength] = useState(0);
   const [blobURL, setBlobURL] = useState('');
@@ -40,11 +42,13 @@ export const useDownload = ({
   const setProgress = useProgress(loadingElement, setPercentLoaded);
 
   const download = useCallback(async () => {
+    setIsFetching(true);
+    const response = await fetch(downloadURL);
+    setIsFetching(false);
     setReceivedLength(0);
     setProgress(0, total);
     setIsLoading(true);
 
-    const response = await fetch(downloadURL);
     if (!response.body) {
       return;
     }
@@ -74,6 +78,7 @@ export const useDownload = ({
     isLoading,
     receivedLength,
     percentLoaded,
+    isFetching,
   };
 };
 

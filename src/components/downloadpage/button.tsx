@@ -29,7 +29,7 @@ export const DownloadButton = ({
     return `/api/${videoId}?${params}`;
   }, [videoId, format, videoTitle]);
   const loadingElement = useRef<HTMLDivElement>(null);
-  const {download, blobURL, receivedLength, ...rest} = useDownload({
+  const {download, blobURL, receivedLength, isFetching, ...rest} = useDownload({
     downloadURL,
     loadingElement,
     contentLength,
@@ -67,6 +67,13 @@ export const DownloadButton = ({
     );
   }
 
+  if (isFetching) {
+    return (
+      <div className="h-12 w-48 lg:w-64">
+        <Skeleton height="100%" baseColor="#F28C18" />
+      </div>
+    );
+  }
   return (
     <>
       {rest.isLoading ? (
