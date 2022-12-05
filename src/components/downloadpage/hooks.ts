@@ -40,7 +40,6 @@ export const useDownload = ({
   const setProgress = useProgress(loadingElement, setPercentLoaded);
 
   const download = useCallback(async () => {
-    console.count('download');
     setReceivedLength(0);
     setProgress(0, total);
     setIsLoading(true);
