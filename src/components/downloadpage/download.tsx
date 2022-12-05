@@ -15,6 +15,7 @@ export const DownloadPage = ({
   videoURL,
   videoDescription,
   format,
+  contentLength,
   imageProps,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -28,8 +29,8 @@ export const DownloadPage = ({
             </div>
             <DownloadDescription {...{videoDescription}} />
           </div>
-          <div className="mt-4 grid grid-cols-1 pb-4">
-            <DownloadButton {...{videoId, videoTitle, format}} />
+          <div className="mt-8 grid grid-cols-1 pb-4">
+            <DownloadButton {...{videoId, contentLength, videoTitle, format}} />
           </div>
           <DownloadBack />
         </div>

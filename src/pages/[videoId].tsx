@@ -24,6 +24,7 @@ export const getStaticProps: GetStaticProps<{
   videoDescription: string | undefined;
   videoTitle: string | undefined;
   videoURL: string | undefined;
+  contentLength: string | undefined;
   imageProps: IGetPlaiceholderReturn | undefined;
   format: keyof typeof DownloadConfig;
 }> = async (context) => {
@@ -37,19 +38,34 @@ export const getStaticProps: GetStaticProps<{
     };
   }
 
-  const details = await ytdl
-    .getInfo(videoId)
-    .then(({videoDetails}) => videoDetails);
+  const {videoDetails, formats} = await ytdl
+    .getBasicInfo(videoId)
+    .then(({videoDetails, formats}) => {
+      return {videoDetails, formats};
+    });
 
-  const imageURL = details.thumbnails[0]?.url ?? '/public/missing_logo.jpg';
+  const imageURL =
+    videoDetails.thumbnails[0]?.url ?? '/public/missing_logo.jpg';
   const imageProps = await getPlaiceholder(imageURL);
+  const format =
+    formats.find(
+      ({mimeType, audioQuality, contentLength}) =>
+        mimeType?.includes('audio') &&
+        audioQuality === 'AUDIO_QUALITY_MEDIUM' &&
+        contentLength
+    ) ??
+    formats.find(
+      ({mimeType, contentLength}) =>
+        mimeType?.includes('audio') && contentLength
+    );
 
   return {
     props: {
       videoId,
-      videoDescription: details.description ?? '',
-      videoURL: details.video_url,
-      videoTitle: details.title,
+      contentLength: format?.contentLength,
+      videoDescription: videoDetails.description ?? '',
+      videoURL: videoDetails.video_url,
+      videoTitle: videoDetails.title,
       format: 'audio',
       imageProps,
     },
