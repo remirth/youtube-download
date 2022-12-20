@@ -37,7 +37,10 @@ export const handler = (
 
   ffmpeg(ytdl(id, {...config}))
     .format(FileExtension)
-    .pipe(res);
+    .pipe(res)
+    .on('close', () => {
+      res.status(200).end();
+    });
 };
 
 export default handler;
