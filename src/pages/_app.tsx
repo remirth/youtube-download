@@ -10,7 +10,9 @@ import '../styles/globals.css';
 import {Container} from '../components';
 import {useState} from 'react';
 
-const jetBrains = JetBrains_Mono();
+const jetBrains = JetBrains_Mono({
+  subsets: ['latin', 'latin-ext'],
+});
 const MyApp: AppType = ({Component, pageProps}) => {
   const [queryClient] = useState(new QueryClient());
 
