@@ -28,6 +28,7 @@
     "no-tabs": "off",
     "valid-jsdoc": "off",
     "jsdoc/no-undefined-types": "off",
+    "jsdoc/require-jsdoc": "off",
     "indent": ["off"],
     "quote-props": ["off"]
   }
