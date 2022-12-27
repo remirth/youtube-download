@@ -13,6 +13,9 @@ const config = {
     locales: ['en'],
     defaultLocale: 'en',
   },
+  experimental: {
+    appDir: true,
+  },
   images: {
     domains: ['img.youtube.com', 'i.ytimg.com'],
     remotePatterns: [

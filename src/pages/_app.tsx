@@ -8,14 +8,13 @@ import {JetBrains_Mono} from '@next/font/google';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../styles/globals.css';
 import {Container} from '../components';
-import {useState} from 'react';
 
 const jetBrains = JetBrains_Mono({
   subsets: ['latin', 'latin-ext'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
 });
+const queryClient = new QueryClient();
 const MyApp: AppType = ({Component, pageProps}) => {
-  const [queryClient] = useState(new QueryClient());
-
   return (
     <QueryClientProvider client={queryClient}>
       <Head>

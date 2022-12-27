@@ -3,7 +3,7 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
-      sans: ['JetBrains Mono'],
+      sans: ['var(--font-jetbrains)'],
     },
     extend: {},
   },

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev --port 4000",
+    "dev": "cross-env NODE_OPTIONS='--inspect' next dev --port 4000",
     "prepare": "npm run lint",
     "lint": "next lint --fix && prettier --write . --loglevel warn",
     "start": "next start"
@@ -12,6 +12,8 @@
   "dependencies": {
     "@next/font": "^13.0.6",
     "@tanstack/react-query": "^4.14.5",
+    "base64-stream": "^1.0.0",
+    "concat-stream": "^2.0.0",
     "daisyui": "^2.39.0",
     "ffmpeg-static": "^5.1.0",
     "fluent-ffmpeg": "github:fluent-ffmpeg/node-fluent-ffmpeg#pull/945/head",
@@ -25,6 +27,9 @@
     "zod": "^3.18.0"
   },
   "devDependencies": {
+    "@badrap/result": "^0.2.13",
+    "@types/base64-stream": "^1.0.2",
+    "@types/concat-stream": "^2.0.0",
     "@types/fluent-ffmpeg": "^2.1.20",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
@@ -32,8 +37,9 @@
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "autoprefixer": "^10.4.7",
+    "cross-env": "^7.0.3",
     "eslint-config-google": "^0.14.0",
-    "eslint-config-next": "^13.0.6",
+    "eslint-config-next": "^13.1.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jsdoc": "^39.6.2",
     "eslint-plugin-prettier": "^4.2.1",
