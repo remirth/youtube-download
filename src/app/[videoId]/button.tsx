@@ -26,7 +26,7 @@ export const DownloadButton = async ({
   return (
     <>
       <a download={fileName} href={dataURI}>
-        <button className="btn-primary btn max-h-12 w-48 lg:w-64">
+        <button className="btn-primary btn h-12 w-48 lg:w-64">
           {`Download ${parsedFormat} (${fileSizeMB} mb)`}
         </button>
       </a>

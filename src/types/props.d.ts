@@ -20,4 +20,17 @@ declare module 'props' {
   export type ClassNameProps = {
     className?: string;
   };
+
+  export type Palette =
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'error'
+    | 'warning'
+    | 'info'
+    | 'base-100'
+    | 'base-200'
+    | 'base-300'
+    | 'accent'
+    | 'neutral';
 }

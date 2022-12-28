@@ -2,8 +2,8 @@ import {Container} from './container';
 // eslint-disable-next-line camelcase
 import {JetBrains_Mono} from '@next/font/google';
 
-import 'react-loading-skeleton/dist/skeleton.css';
 import '../styles/globals.css';
+import '../styles/skeleton.css';
 
 const jetBrains = JetBrains_Mono({
   subsets: ['latin', 'latin-ext'],
