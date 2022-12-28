@@ -3,6 +3,14 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "ignorePatterns": [
+    "node_modules",
+    "dist",
+    "build",
+    "coverage",
+    "public",
+    "fluent-ffmpeg"
+  ],
   "plugins": ["@typescript-eslint", "jsdoc", "prettier"],
   "extends": [
     "next/core-web-vitals",

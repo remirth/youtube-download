@@ -1,10 +1,22 @@
 import {PassThrough} from 'stream';
-import ffmpeg from 'fluent-ffmpeg';
-import ffmpegPath from 'ffmpeg-static';
+import ffmpeg from '../fluent-ffmpeg';
 import {DownloadConfig} from '../constants';
 import ytdl from 'ytdl-core';
 import concat from 'concat-stream';
 import {Base64Encode} from 'base64-stream';
+import os from 'os';
+import {join} from 'path';
+
+const getFFMPEGPath = () => {
+  const platform = process.env['npm_config_platform'] || os.platform();
+
+  return join(
+    process.cwd(),
+    'node_modules',
+    'ffmpeg-static',
+    platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
+  );
+};
 
 type GetStreamProps = {
   videoId: string;
@@ -17,7 +29,7 @@ export const getStream = ({videoId, format}: GetStreamProps) => {
 
   const {FileExtension, ...config} = DownloadConfig[format];
 
-  ffmpeg.setFfmpegPath(ffmpegPath as string);
+  ffmpeg.setFfmpegPath(getFFMPEGPath());
 
   const file = new PassThrough();
 
@@ -28,9 +40,11 @@ export const getStream = ({videoId, format}: GetStreamProps) => {
   return file;
 };
 
-export const getStreamAsBase64 = (props: GetStreamProps) => {
+export const getStreamAsDataURI = (props: GetStreamProps) => {
   return new Promise<string>((resolve, reject) => {
-    const base64Stream = new Base64Encode();
+    const base64Stream = new Base64Encode({
+      prefix: 'data:application/octet-stream;base64,',
+    });
 
     const concatCallback = (data: unknown) => resolve(data as string);
 

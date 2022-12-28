@@ -3,3 +3,5 @@
 /.next
 /coverage
 next-end.d.ts
+/public
+/fluent-ffmpeg
