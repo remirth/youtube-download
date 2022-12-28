@@ -1,6 +1,6 @@
 import {VideoForm} from './video_form';
 
-const Page = () => {
+export default async function Page() {
   return (
     <>
       <div className="grid auto-cols-auto place-items-center p-4">
@@ -13,5 +13,4 @@ const Page = () => {
       </div>
     </>
   );
-};
-export default Page;
+}
