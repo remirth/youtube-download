@@ -17,20 +17,22 @@ type SkeletonProps = {
 export const Skeleton = ({
   inline = false,
   count = 1,
-  width = 'full',
-  height = 'full',
-  largeWidth = 'full',
-  largeHeight = 'full',
+  width = '100%',
+  height = '100%',
+  largeHeight,
+  largeWidth,
   background = 'base-100',
   highlight = 'base-300',
   className,
 }: SkeletonProps) => {
   const elements: ReactElement[] = [];
-  const sizeClass =
-    `w-${width} h-${height} lg:w-${largeWidth} lg:h-${largeHeight}` as const;
   const style: Record<string, string> = {
     '--highlight-color': DaisyUIColorMap[highlight],
     '--base-color': DaisyUIColorMap[background],
+    height: height,
+    width: width,
+    '--large-width': largeWidth ?? width,
+    '--large-height': largeHeight ?? height,
   };
 
   for (let i = 0; i < count; i++) {
@@ -38,7 +40,7 @@ export const Skeleton = ({
       <span
         key={i}
         style={style}
-        className={`${sizeClass} react-loading-skeleton ${className ?? ''}`}
+        className={`react-loading-skeleton ${className ?? ''}`}
       >
         &zwnj;
       </span>

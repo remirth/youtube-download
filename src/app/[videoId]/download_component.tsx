@@ -38,10 +38,9 @@ export const DownloadComponent = async (props: VideoIdProps & FormatProps) => {
             <Suspense
               fallback={
                 <Skeleton
-                  width="48"
-                  height="12"
-                  largeHeight="12"
-                  largeWidth="64"
+                  width="12rem"
+                  height="3rem"
+                  largeWidth="16rem"
                   background="primary"
                 />
               }

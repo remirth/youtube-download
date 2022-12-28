@@ -45,3 +45,10 @@
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
+
+@media (min-width: 1024px) {
+  .react-loading-skeleton {
+    width: var(--large-width) !important;
+    height: var(--large-height) !important;
+  }
+}
