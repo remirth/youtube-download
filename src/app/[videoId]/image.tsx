@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type {VideoDetailsProps, VideoIdProps} from 'props';
 import {getPlaiceholder} from 'plaiceholder';
-import {Suspense} from 'react';
 
 export const DownloadImage = async ({
   details,
@@ -14,15 +13,13 @@ export const DownloadImage = async ({
   return (
     <>
       <Link href={`https://www.youtube.com/watch?v=${videoId}`}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Image
-            priority
-            placeholder="blur"
-            blurDataURL={imageProps.base64}
-            {...imageProps.img}
-            alt="The logo of the clip"
-          />
-        </Suspense>
+        <Image
+          priority
+          placeholder="blur"
+          blurDataURL={imageProps.base64}
+          {...imageProps.img}
+          alt="The logo of the clip"
+        />
       </Link>
     </>
   );

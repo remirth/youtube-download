@@ -422,7 +422,7 @@ module.exports = function (proto) {
           if (!ended) {
             ended = true;
 
-            if (err) {
+            if (err && err.message !== 'Output stream closed') {
               self.emit('error', err, stdout, stderr);
             } else {
               self.emit('end', stdout, stderr);

@@ -1,6 +1,8 @@
 import type {FormatProps, VideoIdProps} from 'props';
+import {Suspense} from 'react';
 import {getVideoDetails} from '../../lib/videoInfo';
 import {DownloadBack} from './back';
+import {DownloadButton} from './button';
 import {DownloadDescription} from './description';
 import {DownloadImage} from './image';
 import {DownloadTitle} from './title';
@@ -32,7 +34,11 @@ export const DownloadComponent = async (props: VideoIdProps & FormatProps) => {
             <DownloadDescription details={details} />
           </div>
           <div className="mt-8 grid grid-cols-1 pb-4"></div>
-          <DownloadBack />
+          <Suspense fallback={'ass'}>
+            {/* @ts-expect-error Server Component */}
+            <DownloadButton {...props} details={details} />
+          </Suspense>
+          <DownloadBack className="mt-2" />
         </div>
       </div>
     </>

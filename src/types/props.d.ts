@@ -16,4 +16,8 @@ declare module 'props' {
   export type VideoDetailsProps = {
     details: MoreVideoDetails;
   };
+
+  export type ClassNameProps = {
+    className?: string;
+  };
 }

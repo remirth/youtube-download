@@ -1,4 +1,3 @@
-import {PassThrough} from 'stream';
 import ffmpeg from '../fluent-ffmpeg';
 import {DownloadConfig} from '../constants';
 import ytdl from 'ytdl-core';
@@ -31,19 +30,14 @@ export const getStream = ({videoId, format}: GetStreamProps) => {
 
   ffmpeg.setFfmpegPath(getFFMPEGPath());
 
-  const file = new PassThrough();
-
-  ffmpeg(ytdl(videoId, {...config}))
-    .format(FileExtension)
-    .pipe(file);
-
-  return file;
+  return ffmpeg(ytdl(videoId, {...config})).format(FileExtension);
 };
 
+export const DATA_URI_PREFIX = 'data:application/octet-stream;base64,' as const;
 export const getStreamAsDataURI = (props: GetStreamProps) => {
   return new Promise<string>((resolve, reject) => {
     const base64Stream = new Base64Encode({
-      prefix: 'data:application/octet-stream;base64,',
+      prefix: DATA_URI_PREFIX,
     });
 
     const concatCallback = (data: unknown) => resolve(data as string);
