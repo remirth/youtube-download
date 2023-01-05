@@ -38,7 +38,7 @@ const useSubmit = () => {
         return;
       }
 
-      push(`/download/${videoId}`);
+      push(`/${videoId}`);
     },
     [push]
   );

@@ -1,4 +1,4 @@
-import {Skeleton} from '../../skeleton';
+import {Skeleton} from '../skeleton';
 export const Loading = () => {
   return (
     <div className="h-full w-full">

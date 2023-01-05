@@ -1,7 +1,7 @@
 import type {FormatProps, VideoIdProps} from 'props';
 import {Suspense} from 'react';
-import {getVideoDetails} from '../../../lib/videoInfo';
-import {Skeleton} from '../../skeleton';
+import {getVideoDetails} from '../../lib/videoInfo';
+import {Skeleton} from '../skeleton';
 import {DownloadBack} from './back';
 import {DownloadButton} from './button';
 import {DownloadDescription} from './description';

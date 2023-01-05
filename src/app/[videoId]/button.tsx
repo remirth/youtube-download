@@ -1,6 +1,6 @@
 import type {FormatProps, VideoDetailsProps, VideoIdProps} from 'props';
-import {DownloadConfig} from '../../../constants';
-import {DATA_URI_PREFIX, getStreamAsDataURI} from '../../../lib/ytdl';
+import {DownloadConfig} from '../../constants';
+import {DATA_URI_PREFIX, getStreamAsDataURI} from '../../lib/ytdl';
 
 export const DownloadButton = async ({
   videoId,

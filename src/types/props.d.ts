@@ -6,7 +6,7 @@ declare module 'props' {
   };
 
   export type ChildrenProps = {
-    children: React.ReactNode;
+    children?: React.ReactNode;
   };
 
   export type FormatProps = {
