@@ -1,6 +1,6 @@
 import {RedirectProvider} from './redirect';
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       <RedirectProvider to="/home" />
