@@ -12,10 +12,12 @@ export const DownloadButton = async ({
   const {FileExtension} = DownloadConfig[parsedFormat];
   const fileName = `${details.title ?? videoId}.${FileExtension}`;
 
-  const dataURI = await getStreamAsDataURI({
-    videoId,
-    format: parsedFormat,
-  });
+  // const dataURI = await getStreamAsDataURI({
+  //   videoId,
+  //   format: parsedFormat,
+  // });
+  //
+  const dataURI = 'data:video/mp4;base64,SGVsbG8sIFdvcmxkIQ==';
 
   const fileSizeInBytes = Math.ceil(
     ((dataURI.length - DATA_URI_PREFIX.length) * 3) / 4
